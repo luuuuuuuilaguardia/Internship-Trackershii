@@ -5,8 +5,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import AttendanceModal from '../components/AttendanceModal';
 import AttendanceList from '../components/AttendanceList';
-
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+import { API_URL } from '../utils/api.js';
 
 const Attendance = () => {
   const [view, setView] = useState('calendar'); // 'calendar' or 'list'
