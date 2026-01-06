@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "keep-alive": "node keep-alive.js"
   },
   "keywords": ["internship", "attendance", "tracker"],
   "author": "",

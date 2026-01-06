@@ -5,73 +5,46 @@ const Landing = () => {
   const { user } = useAuth();
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <div className="flex-grow flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
-          <h1 className="text-5xl font-bold text-gray-900 mb-6">
-            Track Your Internship Progress
-          </h1>
-          <p className="text-xl text-gray-600 mb-8">
-            Monitor your daily hours, calculate completion dates, and stay on track
-            with your internship goals.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
+      <main className="flex-grow flex items-center justify-center p-4">
+        <div className="max-w-md w-full space-y-8 text-center">
+          <div className="mb-12">
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Internship Tracker</h1>
+            <p className="text-gray-600">Simple and efficient way to track your internship hours</p>
+          </div>
+          
+          <div className="space-y-4">
             {user ? (
               <Link
                 to="/dashboard"
-                className="bg-primary text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition"
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
                 Go to Dashboard
               </Link>
             ) : (
               <>
                 <Link
-                  to="/register"
-                  className="bg-primary text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition"
-                >
-                  Get Started
-                </Link>
-                <Link
                   to="/login"
-                  className="bg-white text-primary px-8 py-3 rounded-lg text-lg font-semibold border-2 border-primary hover:bg-gray-50 transition"
+                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                 >
-                  Login
+                  Sign In
                 </Link>
+                <div className="text-sm text-center">
+                  <span className="text-gray-500">Don't have an account? </span>
+                  <Link to="/register" className="font-medium text-blue-600 hover:text-blue-500">
+                    Sign up
+                  </Link>
+                </div>
               </>
             )}
           </div>
         </div>
-      </div>
-      <div className="bg-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="text-4xl mb-4">📊</div>
-              <h3 className="text-xl font-semibold mb-2">Track Hours</h3>
-              <p className="text-gray-600">
-                Log your daily internship hours with ease
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl mb-4">📅</div>
-              <h3 className="text-xl font-semibold mb-2">Smart Calendar</h3>
-              <p className="text-gray-600">
-                Visual calendar view with holiday tracking
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl mb-4">🎯</div>
-              <h3 className="text-xl font-semibold mb-2">Progress Tracking</h3>
-              <p className="text-gray-600">
-                See your completion date and progress metrics
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+      </main>
+      <footer className="py-4 text-center text-sm text-gray-500">
+        <p> {new Date().getFullYear()} Internship Tracker</p>
+      </footer>
     </div>
   );
 };
 
 export default Landing;
-
