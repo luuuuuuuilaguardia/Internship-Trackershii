@@ -4,8 +4,8 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import https from 'https';
+import http from 'http';
 
 import authRoutes from './routes/auth.js';
 import userRoutes from './routes/user.js';
@@ -74,4 +74,21 @@ app.listen(PORT, '0.0.0.0', () => {
   console.log('Environment:', process.env.NODE_ENV || 'development');
   console.log('Frontend URL:', process.env.FRONTEND_URL || 'http://localhost:3000');
   console.log('MongoDB URI:', process.env.MONGODB_URI ? 'Set' : 'Not set');
+  
+  const SERVER_URL = process.env.SERVER_URL || `http://localhost:${PORT}`;
+  
+  setInterval(() => {
+    const protocol = SERVER_URL.startsWith('https') ? https : http;
+    const url = `${SERVER_URL}/api/health`;
+    
+    protocol.get(url, (res) => {
+      if (res.statusCode === 200) {
+        console.log(`[${new Date().toISOString()}] Keep-alive ping successful`);
+      }
+    }).on('error', (err) => {
+      console.error(`[${new Date().toISOString()}] Keep-alive ping failed:`, err.message);
+    });
+  }, 14 * 60 * 1000);
+  
+  console.log(`Keep-alive: Will ping ${SERVER_URL}/api/health every 14 minutes`);
 });
